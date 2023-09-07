@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import Descriptions from "./Descriptions";
+import Offers from "./Offers";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -42,19 +42,12 @@ function PostDetails() {
 
   return (
     <article>
-      <h3>
-        {post.is_favorite ? <span>⭐️</span> : null} {post.name}
-      </h3>
-      <h5>
-        <span>
-          <a href={post.url}>{post.name}</a>
-        </span>{" "}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {post.url}
-      </h5>
-      <h6>{post.category}</h6>
-      <h6>{post.price}</h6>
-      <p>{post.description}</p>
+      <h1>
+        {post.is_favorite ? <span>⭐️</span> : null} <a href={post.url}>{post.name}</a>
+      </h1>
+      <h1>${post.price}</h1>
+      <h3>{post.category}</h3>
+      <p>{post.offer}</p>
       <div className="showNavigation">
         <div>
           {" "}
@@ -71,7 +64,7 @@ function PostDetails() {
           <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
-      <Descriptions />
+      {/* <Offers /> */}
     </article>
   )};
 

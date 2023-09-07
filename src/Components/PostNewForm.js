@@ -73,7 +73,7 @@ function PostNewForm() {
         <label htmlFor="price">Price:</label>
         <input
           id="price"
-          type="text"
+          type="number"
           name="price"
           value={post.price}
           placeholder="Name your price $!"
@@ -86,7 +86,6 @@ function PostNewForm() {
           onChange={handleCheckboxChange}
           checked={post.is_favorite}
         />
-
         <br />
         <input type="submit" />
       </form>

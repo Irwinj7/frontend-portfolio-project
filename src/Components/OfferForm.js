@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function DescriptionForm(props) {
+function OfferForm(props) {
   let { id } = useParams();
-  const { descriptionDetails } = props;
+  const { offerDetails } = props;
 
-  const [description, setDescription] = useState({
+  const [offer, setOffer] = useState({
     author: "",
     title: "",
     content: "",
@@ -14,22 +14,22 @@ function DescriptionForm(props) {
   });
 
   const handleTextChange = (event) => {
-    setDescription({ ...description, [event.target.id]: event.target.value });
+    setOffer({ ...offer, [event.target.id]: event.target.value });
   };
 
   useEffect(() => {
-    if (descriptionDetails) {
-      setDescription(descriptionDetails);
+    if (offerDetails) {
+      setOffer(offerDetails);
     }
-  }, [id, descriptionDetails, props]);
+  }, [id, offerDetails, props]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleSubmit(description, id);
-    if (descriptionDetails) {
+    props.handleSubmit(offer, id);
+    if (offerDetails) {
       props.toggleView();
     }
-    setDescription({
+    setOffer({
       author: "",
       title: "",
       content: "",
@@ -44,7 +44,7 @@ function DescriptionForm(props) {
         <label htmlFor="author">Name:</label>
         <input
           id="author"
-          value={description.author}
+          value={offer.author}
           type="text"
           onChange={handleTextChange}
           placeholder="Your name"
@@ -55,7 +55,7 @@ function DescriptionForm(props) {
           id="title"
           type="text"
           required
-          value={description.title}
+          value={offer.title}
           onChange={handleTextChange}
         />
         <label htmlFor="price">Price:</label>
@@ -66,15 +66,15 @@ function DescriptionForm(props) {
           min="0"
           max="1000000"
           step="1"
-          value={description.price}
+          value={offer.price}
           onChange={handleTextChange}
         />
-        <label htmlFor="content">Description:</label>
+        <label htmlFor="content">Offer:</label>
         <textarea
           id="content"
           type="text"
           name="content"
-          value={description.content}
+          value={offer.content}
           placeholder="What are you listing?"
           onChange={handleTextChange}
         />
@@ -87,4 +87,4 @@ function DescriptionForm(props) {
   );
 }
 
-export default DescriptionForm;
+export default OfferForm;

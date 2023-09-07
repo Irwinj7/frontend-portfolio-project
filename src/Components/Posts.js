@@ -25,7 +25,7 @@ function Posts() {
           </thead>
           <tbody>
             {posts.map((post) => {
-              return <Post key={post.id} post={post} />;
+              return <Post post={post} />;
             })}
           </tbody>
         </table>
