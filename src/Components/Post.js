@@ -1,26 +1,16 @@
 import { Link } from "react-router-dom";
 
-function Post({ post }) {
+export default function Post({ post }) {
   console.log(post)
   return (
-    <tr>
-      <td>
-        {post.is_favorite ? (
-          <span>⭐️</span>
-        ) : (
-          <span>&nbsp; &nbsp; &nbsp;</span>
-        )}
-      </td>
-      <td>
-        <a href={post.url} target="_blank" rel="noreferrer">
-          {post.name}
-        </a>
-      </td>
-      <td>
-        <Link to={`/posts/${post.id}`}>✏️</Link>
-      </td>
-    </tr>
-  );
-}
-
-export default Post;
+    <div className="post">
+            <Link to={`/posts/${post.id}`}><img src={post.url} alt={post.name}/></Link>
+            <p className="label"><span className="bold">Favorite:</span> {post.is_favorite ? (
+                <span>⭐</span>
+            ) : (
+                <span>✩</span>
+            )}</p>
+            <p className="label"><span className="bold">Item:</span> {post.name}</p>
+            <p className="label"><span className="bold">Category:</span> {post.category}</p>
+        </div>
+)};

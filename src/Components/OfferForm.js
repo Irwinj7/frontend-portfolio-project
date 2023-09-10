@@ -8,8 +8,8 @@ function OfferForm(props) {
   const [offer, setOffer] = useState({
     author: "",
     title: "",
-    content: "",
     price: "",
+    content: "",
     post_id: id,
   });
 
@@ -32,8 +32,8 @@ function OfferForm(props) {
     setOffer({
       author: "",
       title: "",
-      content: "",
       price: "",
+      content: "",
       post_id: id,
     });
   };
@@ -75,7 +75,7 @@ function OfferForm(props) {
           type="text"
           name="content"
           value={offer.content}
-          placeholder="What are you listing?"
+          placeholder="What do you offer?"
           onChange={handleTextChange}
         />
 

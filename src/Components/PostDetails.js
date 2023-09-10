@@ -5,67 +5,73 @@ import Offers from "./Offers";
 
 const API = process.env.REACT_APP_API_URL;
 
-
-
 function PostDetails() {
   const [post, setPost] = useState([]);
   let navigate = useNavigate();
   let { id } = useParams();
-
-  const handleDelete = () => {
-    deletePost()
-  };
-
-  const deletePost = () => {
-    axios
-      .delete(`${API}/posts/${id}`)
-      .then(
-        () => {
-          navigate(`/posts`);
-        },
-        (error) => console.error(error)
-      )
-      .catch((c) => console.warn("catch", c));
-  };
-
+  
   useEffect(() => {
     axios
-      .get(`${API}/posts/${id}`)
-      .then((response) => {
-        console.log(response.data);
-        setPost(response.data);
-      })
-      .catch((c) => {
-        console.warn("catch", c);
-      });
-  }, [id, API]);
+    .get(`${API}/posts/${id}`)
+    .then((response) => {
+      setPost(response.data);
+    })
+    .catch((c) => {
+      console.warn("catch", c);
+    });
+  }, [id, navigate, API]);
+  
+  const deletePost = () => {
+    axios
+    .delete(`${API}/posts/${id}`)
+    .then(
+      () => {
+        navigate(`/posts`);
+      },
+      (error) => console.error(error)
+      )
+      .catch((c) => console.warn("catch", c));
+    };
 
+    const handleDelete = () => {
+      deletePost()
+    };
+    
+    
   return (
-    <article>
-      <h1>
-        {post.is_favorite ? <span>⭐️</span> : null} <a href={post.url}>{post.name}</a>
-      </h1>
-      <h1>${post.price}</h1>
-      <h3>{post.category}</h3>
-      <p>{post.offer}</p>
-      <div className="showNavigation">
-        <div>
-          {" "}
-          <Link to={`/posts`}>
-            <button>Back</button>
-          </Link>
+<>
+      <div className="show">
+        <img src={post.url} alt={post.name} />
+        <p className="label">
+          <span className="bold">Favorite:</span>{" "}
+          {post.is_favorite ? <span>⭐</span> : <span>✩</span>}
+        </p>
+
+        <p className="label">
+          <span className="bold">Item:</span> {post.name}
+        </p>
+        <p className="label">
+          <span className="bold">Category:</span> {post.category}
+        </p>
+        <div className="showNavigation">
+          <div>
+            {" "}
+            <Link to={`/posts`}>
+              <button>Back</button>
+            </Link>
+          </div>
+          <div>
+            <Link to={`/posts/${id}/edit`}>
+              <button>Edit</button>
+            </Link>
+          </div>
+          <div>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
         </div>
-        <div>
-          <Link to={`/posts/${id}/edit`}>
-            <button>Edit</button>
-          </Link>
-        </div>
-        <div>
-          <button onClick={handleDelete}>Delete</button>
-        </div>
+        <Offers />
       </div>
-      {/* <Offers /> */}
-    </article>
+    </>
   )};
 
 export default PostDetails;

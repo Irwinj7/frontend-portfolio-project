@@ -29,8 +29,6 @@ function PostEditForm() {
   };
 
   const handleTextChange = (event) => {
-    console.log(event.target.id)
-    console.log(event.target.value)
     setPost({ ...post, [event.target.id]: event.target.value });
   };
 
@@ -46,7 +44,6 @@ function PostEditForm() {
   }, [id, navigate]);
 
   const handleSubmit = (event) => {
-    console.log(post)
     event.preventDefault();
     updatePost(post, id);
   };

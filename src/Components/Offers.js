@@ -68,7 +68,7 @@ function Offers() {
       </OfferForm>
       {offers.map((offer) => (
         <Offer
-        key={offer.content}
+        key={offer.id}
         offer={offer}
         handleSubmit={handleEdit}
         handleDelete={handleDelete}

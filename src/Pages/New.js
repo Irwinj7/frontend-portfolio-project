@@ -2,8 +2,8 @@ import PostNewForm from "../Components/PostNewForm";
 
 function New() {
   return (
-    <div className="New">
-      <h2>New</h2>
+    <div>
+      <h2 className="m-5">New</h2>
       <PostNewForm />
     </div>
   );

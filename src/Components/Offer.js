@@ -1,7 +1,7 @@
 import { useState } from "react";
 import OfferForm from "./OfferForm";
 
-function Offer({ offers, handleDelete, handleSubmit }) {
+function Offer({ offer, handleDelete, handleSubmit }) {
     const [viewEditForm, toggleEditForm] = useState(false);
    
     const toggleView = () => {
@@ -10,29 +10,22 @@ function Offer({ offers, handleDelete, handleSubmit }) {
    
     return (
     <div className="Offers">
-    <button onClick={toggleView}>edit this offers</button>
+    <button onClick={toggleView}>Edit this offers</button>
     
     {viewEditForm ? (<OfferForm
-    offersDetails={offers}
+    offersDetails={offer}
     toggleView={toggleView}
     handleSubmit={handleSubmit}
     />) : 
     (
     <div>
     <h4>
-    {offers.title} <span>{offers.author}</span>
+    {offer.title} <span>{offer.author}</span>
     </h4>
-    <h5>{offers.price}</h5>
-    <p>{offers.content}</p>
+    <h5>{offer.price}</h5>
+    <p>{offer.content}</p>
     </div>)}
-   
-    <div>
-    <h4>
-    {offers.title} <span>{offers.author}</span>
-    </h4>
-    <h5>{offers.price}</h5>
-    <p>{offers.content}</p>
-    </div><button onClick={() => handleDelete(offers.id)}>delete</button>
+    <button onClick={() => handleDelete(offer.id)}>delete</button>
     </div>
     );
    }

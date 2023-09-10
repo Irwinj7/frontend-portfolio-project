@@ -1,6 +1,6 @@
 function Home() {
     return (
-      <div>
+      <div className="home">
         <h2>Welcome</h2>
         <h3>To the greatest Exchange app!</h3>
       </div>
